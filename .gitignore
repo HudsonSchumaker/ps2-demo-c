@@ -2,10 +2,12 @@
 *.d
 
 # Object files
+*.elf
+*.ELF
 *.o
+*.a
 *.ko
 *.obj
-*.elf
 
 # Linker output
 *.ilk
@@ -36,6 +38,11 @@
 *.x86_64
 *.hex
 
+# PS2 specific
+*.IRX
+*.img
+*.iso
+
 # Debug files
 *.dSYM/
 *.su
@@ -51,5 +58,19 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
+# Temporary files
+*~
+*.tmp
+*.bak
+
 # debug information files
 *.dwo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+*.code-workspace
+.idea/
