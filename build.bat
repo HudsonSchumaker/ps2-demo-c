@@ -68,7 +68,7 @@ goto end
 
 :shell
 echo Opening interactive shell in PS2 development container...
-docker run --rm -it -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2game /bin/bash
+docker run --rm -it -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2game /bin/sh
 goto end
 
 :clean
