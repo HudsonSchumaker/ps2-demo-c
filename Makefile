@@ -14,7 +14,7 @@
 #
 
 EE_BIN = bin/ps2game.elf
-EE_OBJS = build/main.o build/de_gfx.o build/de_sfx.o build/de_input.o 
+EE_OBJS = build/main.o build/de_gfx.o build/de_sfx.o build/de_input.o build/de_list.o
 # PS2SDK and compiler settings - use native PS2 graphics libraries
 EE_LIBS := -L${PS2DEV}/gsKit/lib -L${PS2SDK}/ports/lib -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lxmp -lpng -lz -lfreetype -lpatches -lgskit -ldmakit -lps2_drivers -lmodplug -laudsrv -lpad -lstdc++ -latomic -lc
 EE_INCS := -I${PS2SDK}/ports/include -I./include
