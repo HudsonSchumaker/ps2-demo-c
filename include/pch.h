@@ -33,6 +33,7 @@
 
 // Project 
 typedef uint8_t byte;
+#define PI 3.14159265358979323846f
 
 // Screen dimensions
 #define SCREEN_WIDTH 640
