@@ -7,19 +7,29 @@
 * @copyright Copyright (c) 2024, Dodoi-Lab
 */
 #include "../include/de_scene.h"
+#include "../include/de_gfx.h"
 
 static float delta_time = 0.0f;
 static scene_t* current_scene = NULL;
+
+void scene_manager_load_screen(void) {
+    SDL_Renderer* renderer = gfx_get_renderer();
+
+    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
+}
 
 byte scene_manager_set_scene(scene_t* scene) {
     byte status = 0;
     if (current_scene && current_scene->unload) {
         current_scene->unload();       // unload the current scene
-        //free(current_scene);
+        free(current_scene);
     }
 
     current_scene = scene;
     if (current_scene && current_scene->load) {
+        scene_manager_load_screen();   // render the loading screen
         current_scene->load();         // load the new scene
     }
 
