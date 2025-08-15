@@ -14,7 +14,7 @@ static scene_t* current_scene = NULL;
 byte scene_manager_set_scene(scene_t* scene) {
     byte status = 0;
     if (current_scene && current_scene->unload) {
-        current_scene->unload(); // unload the current scene
+        current_scene->unload();       // unload the current scene
         //free(current_scene);
     }
 
@@ -22,6 +22,7 @@ byte scene_manager_set_scene(scene_t* scene) {
     if (current_scene && current_scene->load) {
         current_scene->load();         // load the new scene
     }
+
     if (current_scene && current_scene->run) {
         status = current_scene->run(); // run the scene loop
     }

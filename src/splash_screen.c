@@ -10,14 +10,13 @@
 #include "../include/de_gfx.h"
 #include "../include/de_sfx.h"
 #include "../include/de_input.h"
-#include "../include/de_camera.h"
 
 static bool running = false;
 static scene_t* splash_screen = NULL;
 
+static SDL_Rect logo_rect;
 static SDL_Renderer* renderer = NULL;
-static SDL_Texture* logoTexture = NULL;
-static SDL_Rect logoRect;
+static SDL_Texture* logo_texture = NULL;
 
 void splash_screen_init(void) {
     splash_screen = (scene_t*)malloc(sizeof(scene_t));
@@ -32,27 +31,22 @@ void splash_screen_init(void) {
     splash_screen->render = splash_screen_render;
     splash_screen->run    = splash_screen_run;
     splash_screen->unload = splash_screen_unload;
-
-    printf("Splash Screen: Init\n");
 }
 
 void splash_screen_load(void) {
     renderer = gfx_get_renderer();
 
-    char path[] = "cdrom0:\\DATA\\LOGO.PNG;1";
-    logoTexture = gfx_load_texture(path);
+    char logo_path[] = "cdrom0:\\DATA\\LOGO.PNG;1";
+    logo_texture = gfx_load_texture(logo_path);
+    
+    logo_rect = gfx_get_texture_rect(logo_texture);
+    logo_rect.x = (SCREEN_WIDTH - logo_rect.w) / 2;
+    logo_rect.y = (SCREEN_HEIGHT - logo_rect.h) / 2;
+    logo_rect.w = 256;
+    logo_rect.h = 64;
 
-    logoRect = gfx_get_texture_rect(logoTexture);
-    logoRect.x = (SCREEN_WIDTH - logoRect.w) / 2;
-    logoRect.y = (SCREEN_HEIGHT - logoRect.h) / 2;
-    logoRect.w = 256;
-    logoRect.h = 64;
-
-    sfx_load_sound("cdrom0:\\DATA\\OK.WAV");
-    sfx_load_music("cdrom0:\\DATA\\INTRO.MP3");
-
+    sfx_load_sound("cdrom0:\\DATA\\OK.WAV;1");
     running = true;
-    printf("Splash Screen: Load\n");
 }
 
 void splash_screen_input(void) {
@@ -72,20 +66,22 @@ void splash_screen_input(void) {
 }
 
 void splash_screen_update(void) {
-    scene_manager_calculate_delta_time();
+    static char times = 0;
+    SDL_Delay(200);
+    times++;
+    if (times > 12) {
+        running = false;
+    }
 }
 
 void splash_screen_render(void) {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, logoTexture, NULL, &logoRect);
+    SDL_RenderCopy(renderer, logo_texture, NULL, &logo_rect);
     SDL_RenderPresent(renderer);
 }
 
 byte splash_screen_run(void) {
-    sfx_play_sound();
-    sfx_play_music();
-    
     while (running) {
         splash_screen_input();
         splash_screen_update();
@@ -96,13 +92,10 @@ byte splash_screen_run(void) {
 
 void splash_screen_unload(void) {
     renderer = NULL;
-    if (logoTexture) {
-        SDL_DestroyTexture(logoTexture);
-        logoTexture = NULL;
+    if (logo_texture) {
+        SDL_DestroyTexture(logo_texture);
+        logo_texture = NULL;
     }
-
-    sfx_stop_sound();
-    sfx_stop_music();
 
     printf("Splash Screen: Unload\n");
 }

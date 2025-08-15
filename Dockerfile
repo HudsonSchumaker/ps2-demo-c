@@ -14,7 +14,7 @@
 
 FROM ps2dev/ps2dev:latest
 
-# Install make and required math libraries
+# Install make and required libraries
 RUN apk add --no-cache \
     make \
     mpc1-dev \

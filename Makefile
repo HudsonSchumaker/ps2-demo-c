@@ -15,7 +15,7 @@
 
 EE_BIN = bin/ps2game.elf
 EE_OBJS = build/main.o build/de_gfx.o build/de_sfx.o build/de_input.o build/de_list.o \
-		  build/de_scene.o build/splash_screen.o
+		  build/de_scene.o build/splash_screen.o build/title_screen.o
 
 # PS2SDK and compiler settings - use native PS2 graphics libraries
 EE_LIBS := -L${PS2DEV}/gsKit/lib -L${PS2SDK}/ports/lib -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer \
@@ -55,6 +55,7 @@ clean:
 	rm -f build/*.o
 
 clean-iso:
+	rm -f dvdrom/DATA/BIN/*.*
 	rm -f dvdrom/*.ELF
 	rm -f dvdrom/*.CNF
 

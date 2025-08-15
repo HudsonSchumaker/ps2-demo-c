@@ -19,5 +19,5 @@ void camera_init(camera_t* camera) {
     camera->y = 0;
     camera->w = SCREEN_WIDTH;
     camera->h = SCREEN_HEIGHT;
-    camera->color = (SDL_Color){255, 0, 0, 255};
+    camera->color = (SDL_Color){0, 0, 255, 255};
 }
