@@ -82,7 +82,7 @@ void splash_screen_render(void) {
     SDL_RenderPresent(renderer);
 }
 
-short splash_screen_run(void) {
+byte splash_screen_run(void) {
     sfx_play_sound();
     sfx_play_music();
     
@@ -101,7 +101,8 @@ void splash_screen_unload(void) {
         logoTexture = NULL;
     }
 
-    sfx
+    sfx_stop_sound();
+    sfx_stop_music();
 
     printf("Splash Screen: Unload\n");
 }
