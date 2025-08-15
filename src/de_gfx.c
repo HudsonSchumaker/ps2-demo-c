@@ -88,6 +88,7 @@ SDL_Texture* gfx_load_texture(const char* file_path) {
     
     SDL_FreeSurface(surface);
     SDL_FreeSurface(ps2_surface);
+
     return texture;
 }
 

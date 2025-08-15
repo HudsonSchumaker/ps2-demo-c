@@ -18,6 +18,7 @@ typedef struct {
     void (*unload)(void);  // Unload the scene
 } scene_t;
 
+void scene_manager_load_screen(void);
 byte scene_manager_set_scene(scene_t* scene);
 float scene_manager_get_delta_time(void);
 float scene_manager_calculate_delta_time(void);
