@@ -22,12 +22,17 @@ typedef struct {
 typedef struct {
 	bool first;
 	bool second;
-} bpair_t;
+} bool_pair_t;
 
 typedef struct {
 	char* first;
 	char* second;
 } cpair_t;
+
+typedef struct {
+    byte first;
+    byte second;
+} bpair_t;
 
 typedef struct {
     int first;
