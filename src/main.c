@@ -29,14 +29,6 @@ void set_up(void) {
 
 void init(void) {
     set_up();
-  //  splash_screen_init();
-}
-
-void close(void) {
-    // Cleanup PS2 systems
-    input_close();
-    sfx_close();
-    gfx_close();
 }
 
 int main(int argc, char *argv[]) {
@@ -50,6 +42,8 @@ int main(int argc, char *argv[]) {
     scene_t* title_screen = title_screen_get_scene();
     scene_manager_set_scene(title_screen);
 
-    close();
+    input_close();
+    sfx_close();
+    gfx_close();
     return 0;
 }
