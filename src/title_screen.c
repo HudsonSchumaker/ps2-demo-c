@@ -13,10 +13,12 @@
 
 static bool running = false;
 static scene_t* title_screen = NULL;
-
 static SDL_Renderer* renderer = NULL;
-static SDL_Texture* bgTexture = NULL;
-static SDL_Rect bgRect;
+
+static SDL_Texture* bg_texture = NULL;
+static SDL_Rect bg_rect;
+static SDL_Texture* spc_bar_texture = NULL;
+static SDL_Rect spc_bar_rect;
 
 void title_screen_init(void) {
     title_screen = (scene_t*)malloc(sizeof(scene_t));
@@ -36,15 +38,18 @@ void title_screen_init(void) {
 void title_screen_load(void) {
     renderer = gfx_get_renderer();
 
-    char bg_path[] = "cdrom0:\\DATA\\BG512.PNG;1";
-    bgTexture = gfx_load_texture(bg_path);
+    char bg_path[] = "cdrom0:\\DATA\\BG1.PNG;1";
+    bg_texture = gfx_load_texture(bg_path);
 
-    bgRect = gfx_get_texture_rect(bgTexture);
-    bgRect.x = (SCREEN_WIDTH - bgRect.w) / 2;
-    bgRect.y = (SCREEN_HEIGHT - bgRect.h) / 2;
-    bgRect.w = SCREEN_WIDTH;
-    bgRect.h = SCREEN_HEIGHT;
+    bg_rect = gfx_get_texture_rect(bg_texture);
+    bg_rect.x = 0;
+    bg_rect.y = 0;
+    bg_rect.w = SCREEN_WIDTH;
+    bg_rect.h = SCREEN_HEIGHT;
 
+    spc_bar_texture = gfx_load_texture("cdrom0:\\DATA\\SPCBAR.PNG;1");
+    spc_bar_rect = gfx_get_texture_rect(spc_bar_texture);
+   
     sfx_load_sound("cdrom0:\\DATA\\OK.WAV;1");
     sfx_load_music("cdrom0:\\DATA\\INTRO.MP3;1");
 
@@ -72,9 +77,19 @@ void title_screen_update(void) {
 }
 
 void title_screen_render(void) {
+    static short speed = 8;
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, bgTexture, NULL, &bgRect);
+    SDL_RenderCopy(renderer, bg_texture, NULL, &bg_rect);
+
+    SDL_Rect rect = {
+        100,
+        200 + (int)(speed * SDL_sin(SDL_GetTicks() * (PI / 1600.0f))),
+        spc_bar_rect.w,
+        spc_bar_rect.h
+    };
+	SDL_RenderCopy(renderer, spc_bar_texture, NULL, &rect);
+
     SDL_RenderPresent(renderer);
 }
 
@@ -92,15 +107,20 @@ byte title_screen_run(void) {
 
 void title_screen_unload(void) {
     renderer = NULL;
-    if (bgTexture) {
-        SDL_DestroyTexture(bgTexture);
-        bgTexture = NULL;
+    if (bg_texture) {
+        SDL_DestroyTexture(bg_texture);
+        bg_texture = NULL;
+    }
+
+    if (spc_bar_texture) {
+        SDL_DestroyTexture(spc_bar_texture);
+        spc_bar_texture = NULL;
     }
 
     sfx_stop_sound();
     sfx_stop_music();
 
-    printf("Title Screen: Unload\n");
+    printf("OK: title_screen unload\n");
 }
 
 scene_t* title_screen_get_scene(void) {

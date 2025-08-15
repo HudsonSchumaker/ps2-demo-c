@@ -9,7 +9,6 @@
 #include "../include/splash_screen.h"
 #include "../include/de_gfx.h"
 #include "../include/de_sfx.h"
-#include "../include/de_input.h"
 
 static bool running = false;
 static scene_t* splash_screen = NULL;
@@ -31,6 +30,7 @@ void splash_screen_init(void) {
     splash_screen->render = splash_screen_render;
     splash_screen->run    = splash_screen_run;
     splash_screen->unload = splash_screen_unload;
+    printf("OK: splash_screen init\n");
 }
 
 void splash_screen_load(void) {
@@ -47,14 +47,11 @@ void splash_screen_load(void) {
 
     sfx_load_sound("cdrom0:\\DATA\\OK.WAV;1");
     running = true;
+
+    printf("OK: splash_screen load\n");
 }
 
 void splash_screen_input(void) {
-    SDL_GameController* controller = input_get_controller();
-	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_START)) {
-		running = false;
-	}
-
     SDL_Event sdlEvent;
     while (SDL_PollEvent(&sdlEvent)) {
         switch (sdlEvent.type) {
@@ -67,15 +64,15 @@ void splash_screen_input(void) {
 
 void splash_screen_update(void) {
     static char times = 0;
-    SDL_Delay(200);
+    SDL_Delay(1000);
     times++;
-    if (times > 12) {
+    if (times > 6) {
         running = false;
     }
 }
 
 void splash_screen_render(void) {
-    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
     SDL_RenderCopy(renderer, logo_texture, NULL, &logo_rect);
     SDL_RenderPresent(renderer);
@@ -97,7 +94,7 @@ void splash_screen_unload(void) {
         logo_texture = NULL;
     }
 
-    printf("Splash Screen: Unload\n");
+    printf("OK: splash_screen unload\n");
 }
 
 scene_t* splash_screen_get_scene(void) {
