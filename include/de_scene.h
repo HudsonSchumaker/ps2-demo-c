@@ -14,10 +14,10 @@ typedef struct {
     void (*input)(void);   // Handle input
     void (*update)(void);  // Update the scene
     void (*render)(void);  // Render the scene
-	short (*run)(void);    // Game Loop for the scene
+	byte (*run)(void);     // Game Loop for the scene
     void (*unload)(void);  // Unload the scene
 } scene_t;
 
-short scene_manager_set_scene(scene_t* scene);
+byte scene_manager_set_scene(scene_t* scene);
 float scene_manager_get_delta_time(void);
 float scene_manager_calculate_delta_time(void);
