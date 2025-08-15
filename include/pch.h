@@ -31,9 +31,8 @@
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_gamecontroller.h>
 
-// Game loop
-#define FPS 50
-#define FRAME_TARGET_TIME (1000 / FPS)
+// Project 
+typedef uint8_t byte;
 
 // Screen dimensions
 #define SCREEN_WIDTH 640
