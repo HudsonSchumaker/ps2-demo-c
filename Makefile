@@ -19,7 +19,7 @@ EE_OBJS = build/main.o build/de_gfx.o build/de_sfx.o build/de_input.o build/de_l
 
 # PS2SDK and compiler settings - use native PS2 graphics libraries
 EE_LIBS := -L${PS2DEV}/gsKit/lib -L${PS2SDK}/ports/lib -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer \
-	-lxmp -lpng -lz -lfreetype -lpatches -lgskit -ldmakit -lps2_drivers -lmodplug -laudsrv -lpad -lstdc++ -latomic -lc
+	-lxmp -lpng -lz -lfreetype -lpatches -lgskit -ldmakit -lps2_drivers -lmodplug -laudsrv -lpad -lstdc++ -latomic -lm -lc
 
 EE_INCS := -I${PS2SDK}/ports/include -I./include
 EE_CFLAGS += -DPS2 -Dmain=SDL_main -DHAVE_SDL2 -std=c11
@@ -55,7 +55,7 @@ clean:
 	rm -f build/*.o
 
 clean-iso:
-	rm -f dvdrom/DATA/BIN/*.*
+	rm -f dvdrom/DATA/*.*
 	rm -f dvdrom/*.ELF
 	rm -f dvdrom/*.CNF
 
