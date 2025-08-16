@@ -16,8 +16,8 @@ void sfx_init(void) {
 	// PS2-optimized audio settings
     // MIX_DEFAULT_FORMAT: Usually 16-bit signed
     // 2: Stereo channels
-    // 2048: Larger buffer for PS2's slower I/O and processing
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+    // 3096: Larger buffer for PS2's slower I/O and processing
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 3096) < 0) {
         printf("ERROR: Mixer initialization failed: %s\n", Mix_GetError());
         return;
     }
@@ -28,7 +28,7 @@ void sfx_load_music(const char* file_path) {
     // Free existing music if loaded
     if (music) {
         Mix_FreeMusic(music);
-        music = NULL;
+        music = NULL;   
     }
     
     FILE* file = fopen(file_path, "rb");
