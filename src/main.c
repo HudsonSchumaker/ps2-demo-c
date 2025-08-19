@@ -15,8 +15,9 @@
 #include "../include/de_gfx.h"
 #include "../include/de_sfx.h"
 #include "../include/de_input.h"
-#include "../include/splash_screen.h"
+#include "../include/menu_screen.h"
 #include "../include/title_screen.h"
+#include "../include/splash_screen.h"
 
 void set_up(void) {
     // Initialize PS2 systems
@@ -41,6 +42,10 @@ int main(int argc, char *argv[]) {
     title_screen_init();
     scene_t* title_screen = title_screen_get_scene();
     scene_manager_set_scene(title_screen);
+
+    menu_screen_init();
+    scene_t* menu_screen = menu_screen_get_scene();
+    scene_manager_set_scene(menu_screen);
 
     input_close();
     sfx_close();

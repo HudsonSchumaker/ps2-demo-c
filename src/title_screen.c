@@ -38,7 +38,7 @@ void title_screen_init(void) {
 void title_screen_load(void) {
     renderer = gfx_get_renderer();
 
-    char bg_path[] = "cdrom0:\\DATA\\BG1.PNG;1";
+    char bg_path[] = "cdrom0:\\DATA\\TSMBS.JPG;1";
     bg_texture = gfx_load_texture(bg_path);
 
     bg_rect = gfx_get_texture_rect(bg_texture);
