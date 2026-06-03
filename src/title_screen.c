@@ -21,7 +21,7 @@ static SDL_Texture* spc_bar_texture = NULL;
 static SDL_Rect spc_bar_rect;
 
 void title_screen_init(void) {
-    title_screen = (scene_t*)malloc(sizeof(scene_t));
+    title_screen = malloc(sizeof(scene_t));
     if (title_screen == NULL) {
         printf("ERROR: allocate memory for title screen failed.\n");
         exit(EXIT_FAILURE);
