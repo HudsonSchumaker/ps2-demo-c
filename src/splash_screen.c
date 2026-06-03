@@ -18,7 +18,7 @@ static SDL_Renderer* renderer = NULL;
 static SDL_Texture* logo_texture = NULL;
 
 void splash_screen_init(void) {
-    splash_screen = (scene_t*)malloc(sizeof(scene_t));
+    splash_screen = malloc(sizeof(scene_t));
     if (splash_screen == NULL) {
         printf("ERROR: allocate memory for splashscreen failed.\n");
         exit(EXIT_FAILURE);
