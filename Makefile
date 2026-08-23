@@ -22,7 +22,7 @@ EE_LIBS := -L${PS2DEV}/gsKit/lib -L${PS2SDK}/ports/lib -lSDL2main -lSDL2 -lSDL2_
 	-lxmp -lpng -lz -lfreetype -lpatches -lgskit -ldmakit -lps2_drivers -lmodplug -laudsrv -lpad -lstdc++ -latomic -lm -lc
 
 EE_INCS := -I${PS2SDK}/ports/include -I./include
-EE_CFLAGS += -DPS2 -Dmain=SDL_main -DHAVE_SDL2 -std=c11
+EE_CFLAGS += -DPS2 -Dmain=SDL_main -DHAVE_SDL2 -std=c17
 #EE_CXXFLAGS = $(EE_CFLAGS)
 
 include $(PS2SDK)/samples/Makefile.pref
