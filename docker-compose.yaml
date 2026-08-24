@@ -14,7 +14,7 @@
 services:
   ps2game-shell:
     build: .
-    container_name: ps2game-shell
+    container_name: ps2-sdk-shell
     volumes:
       - .:/usr/src/ps2game
     working_dir: /usr/src/ps2game

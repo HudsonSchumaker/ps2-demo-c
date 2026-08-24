@@ -13,11 +13,16 @@ static Mix_Chunk* sound = NULL;
 static int channel = -1;
 
 void sfx_init(void) {
+
+    if (Mix_Init(MIX_INIT_MP3 | MIX_INIT_OGG) == 0) {
+        printf("ERROR: Mixer initialization failed: %s\n", Mix_GetError());
+        return;
+    }
 	// PS2-optimized audio settings
     // MIX_DEFAULT_FORMAT: Usually 16-bit signed
     // 2: Stereo channels
     // 3096: Larger buffer for PS2's slower I/O and processing
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 3096) < 0) {
+    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 3096) < 0) {
         printf("ERROR: Mixer initialization failed: %s\n", Mix_GetError());
         return;
     }

@@ -51,7 +51,7 @@ void title_screen_load(void) {
     spc_bar_rect = gfx_get_texture_rect(spc_bar_texture);
    
     sfx_load_sound("cdrom0:\\DATA\\OK.WAV;1");
-    sfx_load_music("cdrom0:\\DATA\\INTRO.MP3;1");
+    sfx_load_music("cdrom0:\\DATA\\PUZZLE.OGG;1");
 
     running = true;
 }
