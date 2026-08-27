@@ -38,7 +38,7 @@ goto end
 
 :build
 echo Building PS2 development Docker image...
-docker build -t ps2game .
+docker build -t ps2-sdk .
 if %errorlevel% neq 0 (
     echo Failed to build Docker image!
     exit /b 1
@@ -48,7 +48,7 @@ goto end
 
 :compile
 echo Compiling PS2 game...
-docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2game make
+docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2-sdk  make
 if %errorlevel% neq 0 (
     echo Compilation failed!
     exit /b 1
@@ -58,7 +58,7 @@ goto end
 
 :iso
 echo Creating PS2 ISO...
-docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2game make iso
+docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2-sdk make iso
 if %errorlevel% neq 0 (
     echo ISO creation failed!
     exit /b 1
@@ -68,13 +68,13 @@ goto end
 
 :shell
 echo Opening interactive shell in PS2 development container...
-docker run --rm -it -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2game /bin/sh
+docker run --rm -it -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2-sdk /bin/sh
 goto end
 
 :clean
 echo Cleaning build artifacts...
-docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2game make clean
-docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2game make clean-iso
+docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2-sdk make clean
+docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2-sdk make clean-iso
 echo Build artifacts cleaned!
 goto end
 
