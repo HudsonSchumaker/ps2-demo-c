@@ -22,11 +22,11 @@ void sfx_init(void) {
     // MIX_DEFAULT_FORMAT: Usually 16-bit signed
     // 2: Stereo channels
     // 3096: Larger buffer for PS2's slower I/O and processing
-    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 3096) < 0) {
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, 2, 3096) < 0) {
         printf("ERROR: Mixer initialization failed: %s\n", Mix_GetError());
         return;
     }
-    Mix_AllocateChannels(2); // Limit to 2 simultaneous sound effects
+    Mix_AllocateChannels(MIX_DEFAULT_CHANNELS); // Limit to 2 simultaneous sound effects
 }
 
 void sfx_load_music(const char* file_path) {
