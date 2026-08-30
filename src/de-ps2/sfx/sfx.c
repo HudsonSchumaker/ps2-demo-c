@@ -6,7 +6,7 @@
 * Dodoi-Engine is a game engine developed by Dodoi-Lab.
 * @copyright Copyright (c) 2024, Dodoi-Lab
 */
-#include "../include/de_sfx.h"
+#include "sfx.h"
 
 static Mix_Music* music = NULL;
 static Mix_Chunk* sound = NULL;
@@ -18,7 +18,7 @@ void sfx_init(void) {
         printf("ERROR: Mixer initialization failed: %s\n", Mix_GetError());
         return;
     }
-	// PS2-optimized audio settings
+    // PS2-optimized audio settings
     // MIX_DEFAULT_FORMAT: Usually 16-bit signed
     // 2: Stereo channels
     // 3096: Larger buffer for PS2's slower I/O and processing
@@ -98,12 +98,4 @@ void sfx_stop_music(void) {
 
 void sfx_stop_sound(void) {
 	Mix_HaltChannel(channel);
-}
-
-void sfx_close(void) {
-	Mix_FreeMusic(music);
-	Mix_FreeChunk(sound);
-    Mix_HaltChannel(-1);
-	Mix_CloseAudio();
-	Mix_Quit();
 }

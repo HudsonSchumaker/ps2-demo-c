@@ -1,35 +1,33 @@
 # Dodoi-lab - Research and Development Laboratory
-# PS2 Game Development Makefile with native PS2 graphics and C11
+#
+# PS2 Game Development Makefile with SDL2 PS2 graphics and C17
 # This Makefile is designed to work inside the ps2dev Docker container
 # Include PS2SDK rules FIRST
 #
 # @author Hudson Schumaker
-# @email hudson.schumaker@me.com
-#
 # Copyright (c) 2025 dodoi-lab. All rights reserved.
 #
-# This software is provided 'as-is', without any express or implied
-# warranty. In no event will the authors be held liable for any damages
-# arising from the use of this software.
-#
 
-EE_BIN = bin/ps2game.elf
-EE_OBJS = build/main.o build/de_gfx.o build/de_sfx.o build/de_input.o build/de_list.o \
-		  build/de_scene.o build/splash_screen.o build/title_screen.o
+EE_BIN  = bin/ps2game.elf
+SRCS    := $(shell find src -name '*.c')
+EE_OBJS := $(patsubst %.c, build/%.o, $(notdir $(SRCS)))
+VPATH   := $(sort $(dir $(SRCS)))
 
-# PS2SDK and compiler settings - use native PS2 graphics libraries
-EE_LIBS := -L${PS2DEV}/gsKit/lib -L${PS2SDK}/ports/lib -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer \
-	-lxmp -lpng -lz -lfreetype -lpatches -lgskit -ldmakit -lps2_drivers -lmodplug -laudsrv -lpad -lstdc++ -latomic -lm -lc
+# PS2SDK and compiler settings
+EE_LIBS := -L${PS2DEV}/gsKit/lib -L${PS2SDK}/ports/lib
+EE_LIBS += -lSDL2main -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer
+EE_LIBS += -lxmp -lpng -lz -lfreetype -lpatches -lgskit -ldmakit -lps2_drivers
+EE_LIBS += -lmodplug -laudsrv -lpad -lstdc++ -latomic -lvorbis -lvorbisfile -logg
+EE_LIBS += -lmad -lmpg123 -lc -lm
 
-EE_INCS := -I${PS2SDK}/ports/include -I./include
+EE_INCS := -I${PS2SDK}/ports/include
 EE_CFLAGS += -DPS2 -Dmain=SDL_main -DHAVE_SDL2 -std=c17
-#EE_CXXFLAGS = $(EE_CFLAGS)
 
 include $(PS2SDK)/samples/Makefile.pref
 include $(PS2SDK)/samples/Makefile.eeglobal
 
 # Create build directory and custom object compilation rules
-build/%.o: src/%.c
+build/%.o: %.c
 	@mkdir -p build
 	$(EE_CC) $(EE_CFLAGS) $(EE_INCS) -c $< -o $@
 

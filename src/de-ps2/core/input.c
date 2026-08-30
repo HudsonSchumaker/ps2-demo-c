@@ -6,7 +6,7 @@
 * Dodoi-Engine is a game engine developed by Dodoi-Lab.
 * @copyright Copyright (c) 2024, Dodoi-Lab
 */
-#include "../include/de_input.h"
+#include "input.h"
 static SDL_GameController* controller = NULL;
 
 void input_init(void) {
