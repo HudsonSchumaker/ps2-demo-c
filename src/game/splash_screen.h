@@ -11,6 +11,7 @@
 #include "../app.h"
 #include "../de-ps2/gfx/scene.h"
 #include "../de-ps2/io/loader.h"
+#include "../de-ps2/core/engine.h"
 #include "../de-ps2/core/context.h"
 
 void splash_screen_init(void);

@@ -54,10 +54,11 @@ void splash_screen_input(void) {
 }
 
 void splash_screen_update(void) {
-    static char times = 0;
-    SDL_Delay(1000);
-    times++;
-    if (times > 6) {
+    static float timer = 0.0f;
+    timer += engine_calculate_delta_time();
+
+    if (timer > 2.99f) {
+        timer = 0.0f;
         scene_set_running(false);
     }
 }

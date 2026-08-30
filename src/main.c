@@ -16,7 +16,6 @@
 #include "de-ps2/de.h"
 
 int main(int argc, char* argv[]) {
-
 	app_start();
     return 0;
 }
