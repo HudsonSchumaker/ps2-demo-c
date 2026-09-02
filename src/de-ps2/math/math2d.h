@@ -10,7 +10,7 @@
 #define DE_MATH2D_H
 
 #include "../de.h"
-#include "../util/types.h"
+#include "../core/types.h"
 
 #define SIN_LUT_SIZE 2048
 #define ANGLE_MASK (SIN_LUT_SIZE - 1)
