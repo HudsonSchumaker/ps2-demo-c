@@ -3,7 +3,6 @@
 # PS2 Game Development Build Script for macOS/Linux
 #
 # @author Hudson Schumaker
-# @email hudson.schumaker@me.com
 #
 # Copyright (c) 2025 dodoi-lab. All rights reserved.
 #
@@ -25,6 +24,7 @@ show_help() {
     echo "  iso      - Compile and create ISO file"
     echo "  shell    - Open interactive shell in container"
     echo "  clean    - Clean build artifacts"
+    echo "  run      - Clean, compile, and create ISO"
     echo "  help     - Show this help message"
     echo ""
 }
@@ -59,6 +59,12 @@ clean_artifacts() {
     echo "Build artifacts cleaned!"
 }
 
+run_all() {
+    clean_artifacts
+    compile_game
+    create_iso
+}
+
 # Main script logic
 case "${1:-help}" in
     "build")
@@ -75,6 +81,9 @@ case "${1:-help}" in
         ;;
     "clean")
         clean_artifacts
+        ;;
+    "run")
+        run_all
         ;;
     "help"|*)
         show_help

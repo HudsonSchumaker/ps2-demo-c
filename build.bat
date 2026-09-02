@@ -2,7 +2,6 @@
 :: PS2 Game Development Build Script for Windows
 ::
 :: @author Hudson Schumaker
-:: @email hudson.schumaker@me.com
 :: 
 :: Copyright (c) 2025 dodoi-lab. All rights reserved.
 :: 
@@ -19,6 +18,7 @@ if "%1"=="compile" goto compile
 if "%1"=="iso" goto iso
 if "%1"=="shell" goto shell
 if "%1"=="clean" goto clean
+if "%1"=="run" goto run
 if "%1"=="help" goto help
 
 :help
@@ -32,6 +32,7 @@ echo   compile  - Compile the PS2 game
 echo   iso      - Compile and create ISO file
 echo   shell    - Open interactive shell in container
 echo   clean    - Clean build artifacts
+echo   run      - Clean, compile, and create ISO
 echo   help     - Show this help message
 echo.
 goto end
@@ -76,6 +77,12 @@ echo Cleaning build artifacts...
 docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2-sdk make clean
 docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2-sdk make clean-iso
 echo Build artifacts cleaned!
+goto end
+
+:run
+call :clean
+call :compile
+call :iso
 goto end
 
 :end
