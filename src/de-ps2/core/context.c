@@ -16,6 +16,7 @@ bool ctx_init(void) {
     SDL_SetHint(SDL_HINT_PS2_GS_HEIGHT, "512");
     SDL_SetHint(SDL_HINT_PS2_GS_PROGRESSIVE, "0");
     SDL_SetHint(SDL_HINT_PS2_DYNAMIC_VSYNC, "1");
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         return false;
@@ -33,7 +34,6 @@ bool ctx_init(void) {
         return false;
     }
     
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED  | SDL_RENDERER_PRESENTVSYNC);
     if (!renderer) {
         SDL_DestroyWindow(window);
