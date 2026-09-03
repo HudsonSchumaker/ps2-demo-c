@@ -1,4 +1,4 @@
-# ps2-demo-c - version 0.16.2
+# ps2-demo-c - version 0.17.0
 
 A PlayStation 2 homebrew demo written in C17, built on top of **Dodoi-Engine** — a small SDL2-based game engine layer (scenes, camera, input, gfx, sfx, math, loaders) targeting the PS2 via [ps2dev](https://github.com/ps2dev)/PS2SDK.
 
@@ -18,16 +18,16 @@ src/
   app.c / app.h          Scene loop
   de-ps2/                Dodoi-Engine core
     core/                context, engine, camera, input
-    gfx/                  color, scene rendering
-    io/                   asset loader
-    math/                 2D math helpers
-    sfx/                  audio
-    util/                 lists, arrays, shared types
-  game/                   Game-specific scenes (splash, title)
-assets/                   Fonts, images, audio shipped to the ISO
-dvdrom/                   Staging area for the bootable ISO (BOOT.ELF, SYSTEM.CNF, DATA/)
-bin/                      Build output (.elf / .iso)
-build/                    Intermediate object files
+    gfx/                 color, scene rendering
+    io/                  asset loader
+    math/                2D math helpers
+    sfx/                 audio
+    util/                lists, arrays, shared types
+  game/                  Game-specific scenes (splash, title)
+assets/                  Fonts, images, audio shipped to the ISO
+dvdrom/                  Staging area for the bootable ISO (BOOT.ELF, SYSTEM.CNF, DATA/)
+bin/                     Build output (.elf / .iso)
+build/                   Intermediate object files
 ```
 
 ## Requirements
