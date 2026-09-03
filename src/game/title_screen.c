@@ -12,8 +12,7 @@ static scene_t* title_screen = NULL;
 
 static texture_t bg_texture;
 static texture_t spc_bar_texture;
-static texture_t text = {0};
-static font_t font = {0};
+static label_t text;
 
 void title_screen_init(void) {
     title_screen = malloc(sizeof(scene_t));
@@ -36,22 +35,11 @@ void title_screen_load(void) {
     bg_texture = load_texture_t(bg_path);
     spc_bar_texture = load_texture_t("cdrom0:\\DATA\\SPCBAR.PNG;1");
    
-    font = load_font_t("cdrom0:\\DATA\\ALAGARD.TTF;1", 18);
-    SDL_Surface* surface = TTF_RenderText_Solid(font.font, "PRESS START", (SDL_Color){255, 255, 255, 255});
-    if (!surface) return;
-
-    SDL_Renderer* renderer = ctx_get_renderer();
-    text.texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_FreeSurface(surface);
-    if (!text.texture) return;
-
-    int tw, th;
-    SDL_QueryTexture(text.texture, NULL, NULL, &tw, &th);
-    text.size.w = (float)tw;
-    text.size.h = (float)th;
+    text = write_create_text("cdrom0:\\DATA\\ALAGARD.TTF;1", "PRESS START", 18, (color_t){255, 0, 0, 255});
 
     sfx_load_sound("cdrom0:\\DATA\\OK.WAV;1");
     sfx_load_music("cdrom0:\\DATA\\PUZZLE.OGG;1");
+
     scene_set_running(true);
     printf("OK: title_screen load.\n");
 }
@@ -93,13 +81,13 @@ void title_screen_render(void) {
         };
         SDL_RenderCopy(renderer, spc_bar_texture.texture, NULL, &rect);
 
-        SDL_Rect text_dst = {
+        SDL_FRect text_dst = {
             (SCREEN_WIDTH - text.size.w) / 2,
-            SCREEN_HEIGHT - 100,
+            SCREEN_HEIGHT - 120,
             text.size.w,
             text.size.h
         };
-        SDL_RenderCopy(renderer, text.texture, NULL, &text_dst);
+        SDL_RenderCopyF(renderer, text.texture, NULL, &text_dst);
     }
     scene_end_render();
 }
@@ -119,7 +107,6 @@ byte title_screen_run(void) {
 void title_screen_unload(void) {
     unload_texture_t(bg_texture);
     unload_texture_t(spc_bar_texture);
-    unload_font_t(font);
     
     sfx_stop_sound();
     sfx_stop_music();

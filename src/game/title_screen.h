@@ -11,6 +11,7 @@
 #include "../app.h"
 #include "../de-ps2/gfx/gfx.h"
 #include "../de-ps2/sfx/sfx.h"
+#include "../de-ps2/gfx/write.h"
 #include "../de-ps2/gfx/scene.h"
 #include "../de-ps2/io/loader.h"
 #include "../de-ps2/core/types.h"
