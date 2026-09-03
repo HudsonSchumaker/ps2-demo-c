@@ -29,7 +29,7 @@ SDL_FRect gfx_get_texture_fsize(SDL_Texture* texture) {
     return rect;
 }
 
-void gfx_render_texture(SDL_Texture *texture, i32 x, i32 y, i32 w, i32 h) {
+void gfx_render_texture(SDL_Texture* texture, i32 x, i32 y, i32 w, i32 h) {
     SDL_Rect dest = {x, y, w, h};
     SDL_RenderCopy(ctx_get_renderer(), texture, NULL, &dest);
 }

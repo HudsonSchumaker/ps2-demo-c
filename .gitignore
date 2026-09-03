@@ -73,6 +73,5 @@ dvdrom/DATA/
 Thumbs.db
 
 # IDE files
-.vscode/
 *.code-workspace
 .idea/

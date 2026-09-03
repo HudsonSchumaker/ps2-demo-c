@@ -11,19 +11,18 @@ static SDL_Window* window = NULL;
 static SDL_Renderer* renderer = NULL;
 
 bool ctx_init(void) {
-    SDL_SetHint(SDL_HINT_PS2_GS_MODE, "PAL");
+    SDL_SetHint(SDL_HINT_PS2_GS_MODE, "NTSC");
     SDL_SetHint(SDL_HINT_PS2_GS_WIDTH, "640");
-    SDL_SetHint(SDL_HINT_PS2_GS_HEIGHT, "512");
+    SDL_SetHint(SDL_HINT_PS2_GS_HEIGHT, "448");
     SDL_SetHint(SDL_HINT_PS2_GS_PROGRESSIVE, "0");
     SDL_SetHint(SDL_HINT_PS2_DYNAMIC_VSYNC, "1");
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         return false;
     }
     
-    window = SDL_CreateWindow(
-        "",
+    window = SDL_CreateWindow("",
         SDL_WINDOWPOS_CENTERED, 
         SDL_WINDOWPOS_CENTERED,
         SCREEN_WIDTH, SCREEN_HEIGHT,
