@@ -42,7 +42,7 @@ $(ISO_FILE): $(EE_BIN)
 	@cp -r assets/* $(ISO_DIR)/DATA/ 2>/dev/null || true
 	@echo "BOOT2 = cdrom0:\\BOOT.ELF;1" > $(ISO_DIR)/SYSTEM.CNF
 	@echo "VER = 1.00" >> $(ISO_DIR)/SYSTEM.CNF
-	@echo "VMODE = PAL-G" >> $(ISO_DIR)/SYSTEM.CNF
+	@echo "VMODE = PAL" >> $(ISO_DIR)/SYSTEM.CNF
 	@mkisofs -l -o $(ISO_FILE) $(ISO_DIR)
 
 iso: $(ISO_FILE)
