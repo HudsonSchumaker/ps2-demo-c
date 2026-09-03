@@ -50,8 +50,8 @@
 // Screen dimensions
 #define SCREEN_WIDTH 640
 #define SCREEN_H_WIDTH 320
-#define SCREEN_HEIGHT 512
-#define SCREEN_H_HEIGHT 256
+#define SCREEN_HEIGHT 448
+#define SCREEN_H_HEIGHT 224
 
 // Fast math division
 #define DIV2   0.5f
@@ -78,7 +78,6 @@
 typedef uint8_t  byte;
 typedef uint8_t  u8;
 typedef uint16_t u16;
-typedef uint32_t u32;
 typedef uint64_t u64;
 
 typedef int8_t  i8;
