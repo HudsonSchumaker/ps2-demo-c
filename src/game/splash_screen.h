@@ -8,6 +8,7 @@
 */
 #ifndef SPLASH_SCREEN_H
 #define SPLASH_SCREEN_H
+
 #include "../app.h"
 #include "../de-ps2/gfx/scene.h"
 #include "../de-ps2/io/loader.h"

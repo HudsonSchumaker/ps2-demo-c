@@ -2,6 +2,7 @@
 #define DE_COLOR_H
 
 #include "../de.h"
+
 typedef struct color_t {
     uint8_t r;
     uint8_t g;

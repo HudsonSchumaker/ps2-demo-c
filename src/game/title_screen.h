@@ -8,6 +8,7 @@
 */
 #ifndef TITLE_SCREEN_H
 #define TITLE_SCREEN_H
+
 #include "../app.h"
 #include "../de-ps2/gfx/gfx.h"
 #include "../de-ps2/sfx/sfx.h"
