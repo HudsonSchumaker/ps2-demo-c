@@ -7,17 +7,13 @@
 * @copyright Copyright (c) 2024, Dodoi-Lab
 */
 #include "splash_screen.h"
-
 static scene_t* splash_screen = NULL;
 static texture_t logo_texture;
-static rect_t logo_rect = {0};
+static const char logo_path[] = "cdrom0:/DATA/LOGO.PNG;1";
+static const char font_path[] = "cdrom0:/DATA/ALAGARD.TTF;1";
 
 void splash_screen_init(void) {
-    splash_screen = malloc(sizeof(scene_t));
-    if (splash_screen == NULL) {
-        printf("ERROR: allocate memory for splashscreen failed.\n");
-        exit(EXIT_FAILURE);
-    }
+    splash_screen = scene_init();
 
     splash_screen->load   = splash_screen_load;
     splash_screen->input  = splash_screen_input;
@@ -29,14 +25,13 @@ void splash_screen_init(void) {
 }
 
 void splash_screen_load(void) {
-    char logo_path[] = "cdrom0:\\DATA\\LOGO.PNG;1";
-    logo_texture = load_texture_t(logo_path);
-    
-    logo_rect.w = logo_texture.size.w;
-    logo_rect.h = logo_texture.size.h;
-    
-    logo_rect.x = (SCREEN_WIDTH - logo_rect.w) / 2;
-    logo_rect.y = (SCREEN_HEIGHT - logo_rect.h) / 2;
+    logo_texture = gfx_load_texture_cached(logo_path);
+    logo_texture.position.x = (SCREEN_WIDTH - logo_texture.size.w) / 2;
+    logo_texture.position.y = (SCREEN_HEIGHT - logo_texture.size.h) / 2;
+
+    write_cache_font(font_path, 12);
+    write_cache_font(font_path, 18);
+    write_cache_font(font_path, 24);
 
     scene_set_running(true);
     printf("OK: splash_screen load.\n");
@@ -64,11 +59,9 @@ void splash_screen_update(void) {
 }
 
 void splash_screen_render(void) {
-    SDL_Renderer* renderer = ctx_get_renderer();
     scene_begin_render();
     {
-        SDL_Rect dst = { logo_rect.x, logo_rect.y, logo_rect.w, logo_rect.h };
-        SDL_RenderCopy(renderer, logo_texture.texture, NULL, &dst);
+        gfx_render_texture(logo_texture);
     }
     scene_end_render();
 
@@ -84,7 +77,6 @@ byte splash_screen_run(void) {
 }
 
 void splash_screen_unload(void) {
-    unload_texture_t(logo_texture);
     scene_set_running(false);
     printf("OK: splash_screen unload.\n");
 }
