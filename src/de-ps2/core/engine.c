@@ -6,8 +6,8 @@
  * @copyright Copyright (c) 2024, Dodoi-Lab
  */
 #include "engine.h"
-
 static float delta_time = 0.0f;
+
 void engine_init(void) {
     SifInitRpc(0);
     srand((unsigned int)time(NULL));

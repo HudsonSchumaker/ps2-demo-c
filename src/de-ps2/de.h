@@ -18,6 +18,7 @@
 #include <stddef.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <unistd.h> 
 #include <string.h>
 #include <stdbool.h>
 
@@ -87,20 +88,7 @@ typedef int64_t i64;
 typedef float   f32;
 typedef double  f64;
 typedef char*   text_t;
+typedef const char path_t;
 typedef const char* string_t;
-
-// Navigation Definitions
-#define QUIT -2
-#define EXIT -1
-#define NADA 0
-#define NEXT 1
-#define BACK 2
-#define PLAY 3
-#define PAUSE 4
-#define RESUME 5
-#define RESTART 6
-#define CONTINUE 7
-#define GAME_OVER 8
-#define RELOAD 9
 
 #endif /* DE_H */

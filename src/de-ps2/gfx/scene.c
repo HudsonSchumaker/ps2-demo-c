@@ -7,9 +7,8 @@
  * @copyright Copyright (c) 2024, Dodoi-Lab
 */
 #include "scene.h"
-
-static scene_t* current_scene = NULL;
 static bool is_running = false;
+static scene_t* current_scene = NULL;
 
 static void scene_load_screen(void) {
     SDL_Renderer* renderer = ctx_get_renderer();
@@ -22,6 +21,8 @@ static void scene_load_screen(void) {
 scene_t* scene_init(void) {
     scene_t* scene = malloc(sizeof(scene_t));
     if (!scene) {
+        printf("ERROR: allocate memory for scene failed.\n");
+        exit(EXIT_FAILURE);
         return NULL;
     }
     scene->camera = camera_create(color_black());
@@ -38,6 +39,7 @@ byte scene_set_scene(scene_t* scene) {
     byte status = 0;
     if (current_scene != NULL) {
         current_scene->unload();
+        scene_quit(current_scene);
     }
 
     current_scene = scene;

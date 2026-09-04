@@ -4,8 +4,8 @@
 * @version 1.0.0
 *
 * PS2 tech specs
-* CPU: Emotion Engine 295 MHz (MIPS R5900)
-* GPU: Graphics Synthesizer 147 MHz
+* CPU: Emotion Engine @295 MHz (MIPS R5900)
+* GPU: Graphics Synthesizer @147 MHz
 * RAM: 32 MB
 * VRAM: 4 MB
 *

@@ -11,7 +11,9 @@
 
 #include "../de.h"
 #include "input.h"
+#include "../gfx/gfx.h"
 #include "../sfx/sfx.h"
+#include "../gfx/write.h"
 
 bool ctx_init(void);
 void ctx_quit(void);

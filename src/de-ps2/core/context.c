@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2024, Dodoi-Lab
 */
 #include "context.h"
-
 static SDL_Window* window = NULL;
 static SDL_Renderer* renderer = NULL;
 
@@ -60,12 +59,13 @@ bool ctx_init(void) {
 }
 
 void ctx_quit(void) {
-    Mix_HaltChannel(-1);
-    Mix_CloseAudio();
-    Mix_Quit();
+    gfx_clear_texture_cache();
+    write_clear_font_cache();
+    input_quit();
+    sfx_quit();
+
     TTF_Quit();
     IMG_Quit();
-
     if (renderer) {
         SDL_DestroyRenderer(renderer);
         renderer = NULL;

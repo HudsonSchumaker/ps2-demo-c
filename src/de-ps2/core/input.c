@@ -26,7 +26,7 @@ SDL_GameController* input_get_controller(void) {
     return controller;
 }
 
-void input_close(void) {
+void input_quit(void) {
     if (controller) {
         SDL_GameControllerClose(controller);
         controller = NULL;

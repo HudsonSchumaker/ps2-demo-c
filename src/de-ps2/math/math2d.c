@@ -6,13 +6,12 @@
  * @copyright Copyright (c) 2024, Dodoi-Lab
 */
 #include "math2d.h"
-
-static float sin_table[SIN_LUT_SIZE];
+static float sct_table[SIN_LUT_SIZE];
 
 void build_trigo_tables(void) {
     for (int i = 0; i < SIN_LUT_SIZE; i++) {
         float angle =  ((float)i / SIN_LUT_SIZE) * TWO_PI_F;
-        sin_table[i] = sinf(angle);
+        sct_table[i] = sinf(angle);
     }
 }
 
@@ -21,11 +20,11 @@ int degrees_to_index(float degrees) {
 }
 
 float de_sinf(int angle) {
-    return sin_table[angle & ANGLE_MASK];
+    return sct_table[angle & ANGLE_MASK];
 }
 
 float de_cosf(int angle) {
-    return sin_table[(angle + (SIN_LUT_SIZE >> 2)) & ANGLE_MASK];
+    return sct_table[(angle + (SIN_LUT_SIZE >> 2)) & ANGLE_MASK];
 }
 
 float de_tanf(int angle) {

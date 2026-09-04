@@ -129,18 +129,19 @@ typedef union vec4_t {
 } vec4_t;
 
 typedef struct texture_t {
-    fdimension_t size;
+    ipoint_t position;
+    idimension_t size;
     SDL_Texture* texture;
 } texture_t;
 
 typedef struct font_t {
+    u8 size;
     TTF_Font* font;
-    int size;
 } font_t;
 
 typedef struct label_t {
     ipoint_t position;
-    fdimension_t size;
+    idimension_t size;
     SDL_Texture* texture;
 } label_t;
 
