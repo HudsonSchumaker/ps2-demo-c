@@ -14,12 +14,24 @@
 #include "../io/loader.h"
 #include "../core/context.h"
 
+#define GFX_TEXTURE_CACHE_SIZE 32
+
+typedef struct texture_cache_entry_t {
+    string_t path;
+    texture_t texture;
+} texture_cache_entry_t;
+
+// Load texture with cache
+texture_t gfx_load_texture_cached(string_t path);
+u8 gfx_get_texture_cache_count(void);
+void gfx_clear_texture_cache(void);
+
 // Query texture size
 SDL_Rect gfx_get_texture_size(SDL_Texture* texture);
 SDL_FRect gfx_get_texture_fsize(SDL_Texture* texture);
 
 // Render textures
-void gfx_render_texture(SDL_Texture* texture, i32 x, i32 y, i32 w, i32 h);
-void gfx_render_texture_rotated(SDL_Texture* texture, i32 x, i32 y, i32 w, i32 h, f64 angle);
+void gfx_render_texture(texture_t texture);
+void gfx_render_texture_rotated(texture_t texture, f64 angle);
 
 #endif /* DE_GFX_H */

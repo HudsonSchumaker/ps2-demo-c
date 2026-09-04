@@ -32,7 +32,13 @@ texture_t load_texture_t(string_t path) {
     SDL_Rect rect;
     SDL_QueryTexture(ps2_texture, NULL, NULL, &rect.w, &rect.h);
 
-    return (texture_t){ .size.w = rect.w, .size.h = rect.h, .texture = ps2_texture };
+    return (texture_t){ 
+        .position.x = 0, 
+        .position.y = 0, 
+        .size.w = rect.w, 
+        .size.h = rect.h,
+        .texture = ps2_texture 
+    };
 }
 
 void unload_texture_t(texture_t texture) {

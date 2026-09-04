@@ -1,4 +1,4 @@
-# ps2-demo-c - version 0.1718.0
+# ps2-demo-c - version 0.22.0
 
 A PlayStation 2 homebrew demo written in C17, built on top of **Dodoi-Engine** — a small SDL2-based game engine layer (scenes, camera, input, gfx, sfx, math, loaders) targeting the PS2 via [ps2dev](https://github.com/ps2dev)/PS2SDK.
 

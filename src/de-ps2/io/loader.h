@@ -6,6 +6,7 @@
 */
 #ifndef DE_LOADER_H
 #define DE_LOADER_H
+
 #include "../de.h"
 #include "../core/types.h"
 #include "../core/context.h"
