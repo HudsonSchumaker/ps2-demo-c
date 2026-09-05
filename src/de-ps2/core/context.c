@@ -15,7 +15,7 @@ bool ctx_init(void) {
     SDL_SetHint(SDL_HINT_PS2_GS_HEIGHT, "448");
     SDL_SetHint(SDL_HINT_PS2_GS_PROGRESSIVE, "0");
     SDL_SetHint(SDL_HINT_PS2_DYNAMIC_VSYNC, "1");
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1");
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         return false;
