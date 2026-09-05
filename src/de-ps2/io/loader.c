@@ -29,6 +29,7 @@ texture_t load_texture_t(string_t path) {
 
     SDL_Rect rect;
     SDL_QueryTexture(ps2_texture, NULL, NULL, &rect.w, &rect.h);
+    SDL_FreeSurface(surface);
     SDL_FreeSurface(ps2_surface);
 
     return (texture_t){ 
