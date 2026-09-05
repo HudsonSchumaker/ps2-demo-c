@@ -14,10 +14,8 @@
 #include "../de-ps2/sfx/sfx.h"
 #include "../de-ps2/gfx/write.h"
 #include "../de-ps2/gfx/scene.h"
-#include "../de-ps2/core/types.h"
 #include "../de-ps2/core/input.h"
 #include "../de-ps2/core/engine.h"
-#include "../de-ps2/core/context.h"
 
 void title_screen_init(void);
 void title_screen_load(void);

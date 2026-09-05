@@ -25,6 +25,11 @@ void app_start(void) {
                 scene = title_screen_get_scene();
                 break;
 
+            case SCENE_CREDITS:
+			    credits_screen_init();
+			    scene = credits_screen_get_scene();
+			    break;
+
             default:
                 scene = NULL;
                 next_scene = SCENE_EXIT;

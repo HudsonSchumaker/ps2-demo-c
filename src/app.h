@@ -13,6 +13,7 @@
 #include "de-ps2/core/engine.h"
 #include "game/title_screen.h"
 #include "game/splash_screen.h"
+#include "game/credits_screen.h"
 
 typedef enum scene_id_e {
     SCENE_EXIT = 0,

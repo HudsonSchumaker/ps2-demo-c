@@ -1,55 +1,75 @@
 /**
-* @file title_screen.c
-* @author Hudson Schumaker
-* @version 1.0.0
-*
-* Dodoi-Engine is a game engine developed by Dodoi-Lab.
-* @copyright Copyright (c) 2024, Dodoi-Lab
-*/
+ * @file title_screen.c
+ * @author Hudson Schumaker
+ * @version 1.0.0
+ *
+ * Dodoi-Engine is a game engine developed by Dodoi-Lab.
+ * @copyright Copyright (c) 2024, Dodoi-Lab
+ */
 #include "title_screen.h"
-static scene_t* title_screen = NULL;
-static texture_t bg_texture;
-static texture_t spc_bar_texture;
-static label_t text;
+static scene_t *title_screen = NULL;
+static texture_t btn_r1;
+static texture_t btn_l1;
+static texture_t btn_cross;
+static texture_t btn_circle;
+static texture_t btn_square;
+static texture_t btn_triangle;
+static path_t btn_r1_path[] = "cdrom0:/DATA/R1.PNG;1";
+static path_t btn_l1_path[] = "cdrom0:/DATA/L1.PNG;1";
+static path_t btn_cross_path[] = "cdrom0:/DATA/CROSS.PNG;1";
+static path_t btn_circle_path[] = "cdrom0:/DATA/CIRCLE.PNG;1";
+static path_t btn_square_path[] = "cdrom0:/DATA/SQUARE.PNG;1";
+static path_t btn_triangle_path[] = "cdrom0:/DATA/TRIANGLE.PNG;1";
 
-static path_t bg_path[] = "cdrom0:/DATA/BG1.PNG;1";
-static path_t font_path[] = "cdrom0:/DATA/ALAGARD.TTF;1";
-static path_t spc_bar_path[] = "cdrom0:/DATA/SPCBAR.PNG;1";
-
+static texture_t enter;
+static path_t enter_path[] = "cdrom0:/DATA/ENTER.PNG;1";
 static path_t ok_sound_path[] = "cdrom0:/DATA/OK.WAV;1";
 static path_t puzzle_music_path[] = "cdrom0:/DATA/PUZZLE.OGG;1";
 
 void title_screen_init(void) {
     title_screen = scene_init();
-    title_screen->load   = title_screen_load;
-    title_screen->input  = title_screen_input;
+    title_screen->load = title_screen_load;
+    title_screen->input = title_screen_input;
     title_screen->update = title_screen_update;
     title_screen->render = title_screen_render;
-    title_screen->run    = title_screen_run;
+    title_screen->run = title_screen_run;
     title_screen->unload = title_screen_unload;
     printf("OK: title_screen init.\n");
 }
 
 void title_screen_load(void) {
-    bg_texture = gfx_load_texture_cached(bg_path);
-    spc_bar_texture = gfx_load_texture_cached(spc_bar_path);
-   
-    text = write_create_text_cached(font_path, "PRESS START", 18, (color_t){255, 0, 0, 255});
-    text.position.x = (SCREEN_WIDTH - text.size.w) / 2;
-    text.position.y = SCREEN_HEIGHT - 120;
-
     sfx_cache_sound(ok_sound_path);
     sfx_cache_music(puzzle_music_path);
 
+    btn_r1 = gfx_load_texture_cached(btn_r1_path);
+    btn_r1.position.x = 50;
+    btn_r1.position.y = 100;
+    btn_l1 = gfx_load_texture_cached(btn_l1_path);
+    btn_l1.position.x = 100;
+    btn_l1.position.y = 100;
+    btn_cross = gfx_load_texture_cached(btn_cross_path);
+    btn_cross.position.x = 150;
+    btn_cross.position.y = 100;
+    btn_circle = gfx_load_texture_cached(btn_circle_path);
+    btn_circle.position.x = 200;
+    btn_circle.position.y = 100;
+    btn_triangle = gfx_load_texture_cached(btn_triangle_path);
+    btn_triangle.position.x = 300;
+    btn_triangle.position.y = 100;
+    btn_square = gfx_load_texture_cached(btn_square_path);
+    btn_square.position.x = 250;
+    btn_square.position.y = 100;
+
+    enter = gfx_load_texture_cached(enter_path);
     scene_set_running(true);
     printf("OK: title_screen load.\n");
 }
 
 void title_screen_input(void) {
-    SDL_GameController* controller = input_get_controller();
-	if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_START)) {
-		scene_set_running(false);
-	}
+    SDL_GameController *controller = input_get_controller();
+    if (SDL_GameControllerGetButton(controller, SDL_CONTROLLER_BUTTON_X)) {
+        scene_set_running(false);
+    }
 
     SDL_Event e;
     while (SDL_PollEvent(&e)) {
@@ -69,24 +89,24 @@ void title_screen_render(void) {
 
     scene_begin_render();
     {
-        SDL_Rect bg_rect = {0, 0, SCREEN_WIDTH, SCREEN_HEIGHT};
-        SDL_RenderCopy(renderer, bg_texture.texture, NULL, &bg_rect);
+        gfx_render_texture(btn_r1);
+        gfx_render_texture(btn_l1);
+        gfx_render_texture(btn_cross);
+        gfx_render_texture(btn_circle);
+        gfx_render_texture(btn_square);
+        gfx_render_texture(btn_triangle);
 
         SDL_Rect rect = {
             100,
             300 + (int)(speed * SDL_sin(SDL_GetTicks() * (PI_F / 1600.0f))),
-            spc_bar_texture.size.w,
-            spc_bar_texture.size.h
-        };
-        SDL_RenderCopy(renderer, spc_bar_texture.texture, NULL, &rect);
-
-        write_render_text(text);
+            enter.size.w,
+            enter.size.h};
+        SDL_RenderCopy(renderer, enter.texture, NULL, &rect);
     }
     scene_end_render();
 }
 
 byte title_screen_run(void) {
-    sfx_play_sound_cached(ok_sound_path);
     sfx_play_music_cached(puzzle_music_path);
 
     while (scene_is_running()) {
@@ -94,12 +114,11 @@ byte title_screen_run(void) {
         title_screen_update();
         title_screen_render();
     }
-    return SCENE_SPLASH;
+    return SCENE_CREDITS;
 }
 
 void title_screen_unload(void) {
     sfx_stop_all();
-    write_destroy_text(text);
 
     scene_set_running(false);
     printf("OK: title_screen unload\n");
@@ -109,6 +128,6 @@ void title_screen_unload(void) {
     printf("Music cache count: %d\n", sfx_get_music_cache_count());
 }
 
-scene_t* title_screen_get_scene(void) {
+scene_t *title_screen_get_scene(void) {
     return title_screen;
 }

@@ -9,7 +9,11 @@
 #include "splash_screen.h"
 static scene_t* splash_screen = NULL;
 static texture_t logo_texture;
+static texture_t dd_engine_texture;
+static texture_t st_studios_texture;
 static path_t logo_path[] = "cdrom0:/DATA/LOGO.PNG;1";
+static path_t dd_engine_path[] = "cdrom0:/DATA/DD.PNG;1";
+static path_t st_studios_path[] = "cdrom0:/DATA/ST.PNG;1";
 static path_t font_path[] = "cdrom0:/DATA/ALAGARD.TTF;1";
 
 void splash_screen_init(void) {
@@ -28,7 +32,18 @@ void splash_screen_load(void) {
     logo_texture.position.x = (SCREEN_WIDTH - logo_texture.size.w) / 2;
     logo_texture.position.y = (SCREEN_HEIGHT - logo_texture.size.h) / 2;
 
-    write_cache_font(font_path, 12);
+    dd_engine_texture = gfx_load_texture_cached(dd_engine_path);
+    dd_engine_texture.size.w = 32;
+    dd_engine_texture.size.h = 32;
+    dd_engine_texture.position.x = 0;
+    dd_engine_texture.position.y = SCREEN_HEIGHT - dd_engine_texture.size.h;
+
+    st_studios_texture = gfx_load_texture_cached(st_studios_path);
+    st_studios_texture.size.w = 32;
+    st_studios_texture.size.h = 32;
+    st_studios_texture.position.x = dd_engine_texture.size.w + 2;
+    st_studios_texture.position.y = SCREEN_HEIGHT - st_studios_texture.size.h;
+
     write_cache_font(font_path, 18);
     write_cache_font(font_path, 24);
 
@@ -37,12 +52,10 @@ void splash_screen_load(void) {
 }
 
 void splash_screen_input(void) {
-    SDL_Event sdlEvent;
-    while (SDL_PollEvent(&sdlEvent)) {
-        switch (sdlEvent.type) {
-            case SDL_QUIT:
-                scene_set_running(false);
-                break;
+    SDL_Event e;
+    while (SDL_PollEvent(&e)) {
+        if (e.type == SDL_QUIT) {
+            scene_set_running(false);
         }
     }
 }
@@ -61,9 +74,10 @@ void splash_screen_render(void) {
     scene_begin_render();
     {
         gfx_render_texture(logo_texture);
+        gfx_render_texture(dd_engine_texture);
+        gfx_render_texture(st_studios_texture);
     }
     scene_end_render();
-
 }
 
 byte splash_screen_run(void) {

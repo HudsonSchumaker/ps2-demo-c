@@ -33,7 +33,7 @@ build/%.o: %.c
 
 # ISO creation variables and rules AFTER includes
 ISO_DIR = dvdrom
-ISO_FILE = bin/ps2game.iso
+ISO_FILE = bin/dd-ps2-c-demo.iso
 
 $(ISO_FILE): $(EE_BIN)
 	@mkdir -p $(ISO_DIR)/DATA

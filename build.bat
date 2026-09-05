@@ -79,10 +79,16 @@ docker run --rm -v "%cd%:/usr/src/ps2game" -w /usr/src/ps2game ps2-sdk make clea
 echo Build artifacts cleaned!
 goto end
 
+:pcsx2
+echo Launching PCSX2 emulator with the compiled ISO...
+start "" "c:\Consoles\PS2\pcsx2-qt.exe" "bin/dd-ps2-c-demo.iso"
+goto end
+
 :run
 call :clean
 call :compile
 call :iso
+call :pcsx2
 goto end
 
 :end

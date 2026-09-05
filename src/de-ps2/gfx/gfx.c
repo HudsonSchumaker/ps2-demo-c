@@ -34,6 +34,22 @@ texture_t gfx_load_texture_cached(string_t path) {
     return texture;
 }
 
+void gfx_cache_texture(string_t path) {
+    if (texture_cache_count >= GFX_TEXTURE_CACHE_SIZE) {
+        return;
+    }
+
+    texture_t texture = load_texture_t(path);
+    if (texture.texture == NULL) {
+        return;
+    }
+
+    texture_cache[texture_cache_count].path = path;
+    texture_cache[texture_cache_count].texture = texture;
+    texture_cache_count++;
+    printf("OK: Texture added to cache: %s\n", path);
+}
+
 u8 gfx_get_texture_cache_count(void) {
     return texture_cache_count;
 }
