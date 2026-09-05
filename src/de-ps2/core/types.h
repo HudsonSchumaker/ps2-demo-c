@@ -14,10 +14,10 @@
 typedef struct ipoint_t {
     union {
         struct {
-            int x;
-            int y;
+            i32 x;
+            i32 y;
         };
-        int values[2];
+        i32 values[2];
     };
     
 } ipoint_t;
@@ -25,79 +25,79 @@ typedef struct ipoint_t {
 typedef struct fpoint_t {
     union {
         struct {
-            float x;
-            float y;
+            f32 x;
+            f32 y;
         };
-        float values[2];
+        f32 values[2];
     };
 } fpoint_t;
 
 typedef struct idimension_t {
     union {
         struct {
-            int w;
-            int h;
+            i32 w;
+            i32 h;
         };
-        int values[2];
+        i32 values[2];
     };
 } idimension_t;
 
 typedef struct fdimension_t {
     union {
         struct {
-            float w;
-            float h;
+            f32 w;
+            f32 h;
         };
-        float values[2];
+        f32 values[2];
     };
 } fdimension_t;
 
 typedef struct rect_t {
-    int x;
-    int y;
-    int w;
-    int h;
+    i32 x;
+    i32 y;
+    i32 w;
+    i32 h;
 } rect_t;
 
 typedef struct ipair_t {
     union {
         struct {
-            int f;
-            int s;
+            i32 f;
+            i32 s;
         };
-        int values[2];
+        i32 values[2];
     };
 } ipair_t;
 
 typedef struct fpair_t {
     union {
         struct {
-            float f;
-            float s;
+            f32 f;
+            f32 s;
         };
-        float values[2];
+        f32 values[2];
     };
 } fpair_t;
 
 typedef struct itriple_t {
     union {
         struct {
-            int f;
-            int s;
-            int t;
+            i32 f;
+            i32 s;
+            i32 t;
         };
-        int values[3];
+        i32 values[3];
     };
 } itriple_t;
 
 typedef struct ftriple_t {
     union {
         struct {
-            float f;
-            float s;
-            float t;
+            f32 f;
+            f32 s;
+            f32 t;
         };
-        float values[3];
+        f32 values[3];
     };
 } ftriple_t;
 

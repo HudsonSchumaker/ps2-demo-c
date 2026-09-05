@@ -12,9 +12,9 @@
 #include "../de.h"
 #include "../core/types.h"
 
-#define SIN_LUT_SIZE 2048
-#define ANGLE_MASK (SIN_LUT_SIZE - 1)
-#define TABLE_SCALE (SIN_LUT_SIZE / 360.0f)
+#define SCT_LUT_SIZE 2048
+#define ANGLE_MASK (SCT_LUT_SIZE - 1)
+#define TABLE_SCALE (SCT_LUT_SIZE / 360.0f)
 
 //----------------------------------------------------------------
 // Lookup tables for trigonometric functions
@@ -28,27 +28,27 @@ void build_trigo_tables(void);
 /**
  * @brief Converts degrees to the corresponding index in the lookup table.
  * @param degrees The angle in degrees
- * @return The corresponding index in the range [0, 1024) where 1024 represents 360 degrees
+ * @return The corresponding index in the range [0, SCT_LUT_SIZE) where SCT_LUT_SIZE represents 360 degrees
 */
 int degrees_to_index(float degrees);
 
 /**
  * @brief Approximates the sine of an angle using a lookup table.
- * @param angle The input angle in the range [0, 1024) where 1024 represents 360 degrees
+ * @param angle The input angle in the range [0, SCT_LUT_SIZE) where SCT_LUT_SIZE represents 360 degrees
  * @return Approximation of the sine of the angle
 */    
 float de_sinf(int angle);
 
 /**
  * @brief Approximates the cosine of an angle using a lookup table.
- * @param angle The input angle in the range [0, 1024) where 1024 represents 360 degrees
+ * @param angle The input angle in the range [0, SCT_LUT_SIZE) where SCT_LUT_SIZE represents 360 degrees
  * @return Approximation of the cosine of the angle
 */
 float de_cosf(int angle);
 
 /**
  * @brief Approximates the tangent of an angle using a lookup table.
- * @param angle The input angle in the range [0, 1024) where 1024 represents 360 degrees
+ * @param angle The input angle in the range [0, SCT_LUT_SIZE) where SCT_LUT_SIZE represents 360 degrees
  * @return Approximation of the tangent of the angle
 */
 float de_tanf(int angle);
