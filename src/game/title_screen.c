@@ -21,7 +21,6 @@ static path_t puzzle_music_path[] = "cdrom0:/DATA/PUZZLE.OGG;1";
 
 void title_screen_init(void) {
     title_screen = scene_init();
-
     title_screen->load   = title_screen_load;
     title_screen->input  = title_screen_input;
     title_screen->update = title_screen_update;
@@ -52,12 +51,10 @@ void title_screen_input(void) {
 		scene_set_running(false);
 	}
 
-    SDL_Event sdlEvent;
-    while (SDL_PollEvent(&sdlEvent)) {
-        switch (sdlEvent.type) {
-            case SDL_QUIT:
-                scene_set_running(false);
-                break;
+    SDL_Event e;
+    while (SDL_PollEvent(&e)) {
+        if (e.type == SDL_QUIT) {
+            scene_set_running(false);
         }
     }
 }

@@ -9,12 +9,11 @@
 #include "splash_screen.h"
 static scene_t* splash_screen = NULL;
 static texture_t logo_texture;
-static const char logo_path[] = "cdrom0:/DATA/LOGO.PNG;1";
-static const char font_path[] = "cdrom0:/DATA/ALAGARD.TTF;1";
+static path_t logo_path[] = "cdrom0:/DATA/LOGO.PNG;1";
+static path_t font_path[] = "cdrom0:/DATA/ALAGARD.TTF;1";
 
 void splash_screen_init(void) {
     splash_screen = scene_init();
-
     splash_screen->load   = splash_screen_load;
     splash_screen->input  = splash_screen_input;
     splash_screen->update = splash_screen_update;
