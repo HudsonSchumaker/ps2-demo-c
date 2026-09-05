@@ -19,6 +19,7 @@ void sfx_init(void) {
         return;
     }
     // PS2-optimized audio settings
+    // MIX_DEFAULT_FREQUENCY: 44100hz
     // MIX_DEFAULT_FORMAT: Usually 16-bit signed
     // 2: Stereo channels
     // 3096: Larger buffer for PS2's slower I/O and processing
