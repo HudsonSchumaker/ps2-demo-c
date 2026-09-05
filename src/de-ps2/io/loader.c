@@ -25,12 +25,11 @@ texture_t load_texture_t(string_t path) {
     }
 
     SDL_Surface* ps2_surface = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_RGB565, 0);
-    SDL_FreeSurface(surface);
     SDL_Texture* ps2_texture = SDL_CreateTextureFromSurface(ctx_get_renderer(), ps2_surface);
-    SDL_FreeSurface(ps2_surface);
 
     SDL_Rect rect;
     SDL_QueryTexture(ps2_texture, NULL, NULL, &rect.w, &rect.h);
+    SDL_FreeSurface(ps2_surface);
 
     return (texture_t){ 
         .position.x = 0, 
