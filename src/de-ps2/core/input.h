@@ -16,5 +16,6 @@ void input_init(void);
 void input_quit(void);
 
 SDL_GameController* input_get_controller(void);
+bool input_is_button_pressed(SDL_GameControllerButton button);
 
 #endif /* INPUT_H */

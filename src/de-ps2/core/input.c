@@ -8,6 +8,7 @@
 */
 #include "input.h"
 static SDL_GameController* controller = NULL;
+static bool prev_button_state[SDL_CONTROLLER_BUTTON_MAX] = { false };
 
 void input_init(void) {
     // Initialize SDL game controller
@@ -24,6 +25,13 @@ void input_init(void) {
 
 SDL_GameController* input_get_controller(void) {
     return controller;
+}
+
+bool input_is_button_pressed(SDL_GameControllerButton button) {
+    bool current = SDL_GameControllerGetButton(controller, button) != 0;
+    bool just_pressed = current && !prev_button_state[button];
+    prev_button_state[button] = current;
+    return just_pressed;
 }
 
 void input_quit(void) {
