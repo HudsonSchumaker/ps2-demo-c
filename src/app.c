@@ -7,9 +7,6 @@
  * @copyright Copyright (c) 2024, Dodoi-Lab
 */
 #include "app.h"
-#include "de-ps2/core/engine.h"
-#include "game/title_screen.h"
-#include "game/splash_screen.h"
 
 void app_start(void) {
     byte next_scene = SCENE_SPLASH;

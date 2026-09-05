@@ -10,8 +10,11 @@
 #define DE_APP_H
 
 #include "de-ps2/de.h"
+#include "de-ps2/core/engine.h"
+#include "game/title_screen.h"
+#include "game/splash_screen.h"
 
-typedef enum {
+typedef enum scene_id_e {
     SCENE_EXIT = 0,
     SCENE_SPLASH,
     SCENE_TITLE,
