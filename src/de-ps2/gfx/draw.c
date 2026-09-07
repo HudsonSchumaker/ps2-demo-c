@@ -6,7 +6,6 @@
  * @copyright Copyright (c) 2026, Dodoi-Lab
 */
 #include "draw.h"
-#include "../core/context.h"
 
 void draw_line(i32 x0, i32 y0, i32 x1, i32 y1, color_t color) {
     SDL_Renderer* renderer = ctx_get_renderer();

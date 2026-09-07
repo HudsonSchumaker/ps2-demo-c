@@ -69,6 +69,7 @@
 #define DIV64  0.015625f
 #define DIV128 0.0078125f
 
+// Mathematical constants
 #define PI_F 3.1415927f
 #define TWO_PI_F (PI_F * 2.0f)
 #define HALF_PI_F (PI_F * 0.5f)
