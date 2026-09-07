@@ -128,6 +128,6 @@ void title_screen_unload(void) {
     printf("Music cache count: %d\n", sfx_get_music_cache_count());
 }
 
-scene_t *title_screen_get_scene(void) {
+scene_t* title_screen_get_scene(void) {
     return title_screen;
 }

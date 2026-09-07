@@ -38,6 +38,7 @@ void scene_quit(scene_t* scene) {
 byte scene_set_scene(scene_t* scene) {
     byte status = 0;
     if (current_scene != NULL) {
+        is_running = false;
         current_scene->unload();
         scene_quit(current_scene);
     }
