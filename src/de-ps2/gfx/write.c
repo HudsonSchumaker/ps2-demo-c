@@ -3,7 +3,7 @@
  * @author Hudson Schumaker
  *
  * Dodoi-Engine is a game engine developed by Dodoi-Lab.
- * @copyright Copyright (c) 2024, Dodoi-Lab
+ * @copyright Copyright (c) 2026, Dodoi-Lab
  */
 #include "write.h"
 static u8 font_cache_count = 0;
